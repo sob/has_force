@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
   s.rdoc_options     << '--inline-source' << '--charset=UTF-8'
   s.extra_rdoc_files  = ['README.rdoc', 'MIT-LICENSE']
   
-  s.files             = %w(MIT-LICENSE README.rdoc Rakefile lib lib/force lib/force.rb lib/force/core_ext lib/force/core_ext/array.rb lib/force/core_ext/hash.rb lib/force/has_force.rb rails rails/init.rb test test/core_ext_test.rb test/database.yml test/has_force_test.rb test/schema.rb test/test_helper.rb)
+  s.files             = %w(CHANGELOG.rdoc MIT-LICENSE README.rdoc Rakefile lib lib/force lib/force.rb lib/force/core_ext lib/force/core_ext/array.rb lib/force/core_ext/hash.rb lib/force/has_force.rb rails rails/init.rb test test/core_ext_test.rb test/database.yml test/has_force_test.rb test/schema.rb test/test_helper.rb)
   s.test_files        = %w(test/core_ext_test.rb test/database.yml test/has_force_test.rb test/schema.rb test/test_helper.rb)
 end
