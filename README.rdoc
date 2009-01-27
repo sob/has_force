@@ -1,0 +1,14 @@
+= has_force
+
+This plugin will submit an ActiveRecord model to SalesForce.com using the Web2Lead gateway.
+
+== Example usage
+  
+  class Lead < ActiveRecord::Base
+    has_force :oid => '123'
+  end
+
+  Lead.new(:first_name => "Test").to_salesforce
+
+
+Copyright (c) 2009 Sean O'Brien, released under the MIT license
