@@ -8,6 +8,20 @@ module Force
   end
   
   module ClassMethods
+    # This method includes the Force class and instance methods, allowing a
+    # model to be submitted to SalesForce.com through the Web2Lead tool.
+    #
+    # === Supported Options
+    #
+    # [:skip_fields]
+    #   Specify attributes (as symbols) to remove before sending to salesforce.com
+    # [:transform_fields]
+    #   Specify key,value pairs consisting of old_field => new_field to rename fields before sending to salesforce.com (used for custom fields)
+    # [:oid]
+    #   Your organizations SalesForce.com OID
+    # [:include_fields]
+    #   Additional fields to include with the submission to the Web2Lead gateway. Specified as key,value pairs
+    #
     def has_force(options = {})
       options = {
         :skip_fields => [ :id, :created_at, :created_by, :updated_at, :updated_by, :status ],
@@ -31,6 +45,13 @@ module Force
   end
   
   module InstanceMethods
+    # This method submits the attributes of an object to SalesForce.com using
+    # the Web2Lead gateway. It does not check for previous submissions so you
+    # should somewhere in your model before calling this function.
+    #
+    # Returns true on <tt>Net::HTTPSuccess</tt> or <tt>Net::HTTPRedirection</tt>
+    # otherwise returns false
+    #
     def to_salesforce
       url = URI.parse('https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8')
       http = Net::HTTP.new(url.host, url.port)
