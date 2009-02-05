@@ -16,6 +16,11 @@ class HasForceTest < Test::Unit::TestCase
     assert_equal('123', Lead.force_oid)
   end
   
+  def test_lead_class_sets_force_include_fields
+    assert_not_nil(Lead.force_include_fields)
+    assert_equal({}, Lead.force_include_fields)
+  end
+  
   def test_lead_class_sets_force_skip_fields
     assert_not_nil(Lead.force_skip_fields)
     assert_equal([:id, :created_at, :created_by, :updated_at, :updated_by, :status], Lead.force_skip_fields)

@@ -12,16 +12,19 @@ module Force
       options = {
         :skip_fields => [ :id, :created_at, :created_by, :updated_at, :updated_by, :status ],
         :transform_fields => { },
-        :oid => ''
+        :oid => '',
+        :include_fields => { }
       }.merge(options)
       
       cattr_accessor :force_skip_fields
       cattr_accessor :force_transform_fields
       cattr_accessor :force_oid
+      cattr_accessor :force_include_fields
       
       self.force_skip_fields = options[:skip_fields]
       self.force_transform_fields = options[:transform_fields]
       self.force_oid = options[:oid]
+      self.force_include_fields = options[:include_fields]
       
       send :include, InstanceMethods
     end
@@ -36,6 +39,7 @@ module Force
       request = Net::HTTP::Post.new(url.path)
       attribs = (self.attributes - self.class.force_skip_fields.stringify).stringify_values!
       attribs.transform_keys!(self.class.force_transform_fields)
+      attribs = attribs.merge(self.class.force_include_fields)
       request.set_form_data(attribs.merge({:oid => self.class.force_oid}))
       begin
         response = http.request(request)
