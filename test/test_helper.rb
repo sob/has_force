@@ -2,7 +2,12 @@ ENV['RAILS_ENV'] = 'test'
 ENV['RAILS_ROOT'] ||= File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', '..'))
 
 require 'test/unit'
-require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config', 'environment.rb'))
+if (File.exists?(File.expand_path(File.join(ENV['RAILS_ROOT'], 'config', 'environment.rb'))))
+  require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config', 'environment.rb'))
+else
+  require 'rubygems'
+  require 'activerecord'
+end
 
 def load_schema
   config = YAML::load(IO.read(File.expand_path(File.join(File.dirname(__FILE__), 'database.yml'))))
