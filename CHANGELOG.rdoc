@@ -1,2 +1,7 @@
+== 1.0.1, Released 2009-02-10
+* to_salesforce now returns true automatically if RAILS_ENV == 'test' [sob]
+* added missing documentation to has_force methods [sob]
+* added the option to include fields with the form submission (include_fields) [sob]
+
 == 1.0.0, Released 2009-01-26
 * Initial release

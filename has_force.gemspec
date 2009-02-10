@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name              = 'has_force'
-  s.version           = '1.0'
-  s.date              = '2009-01-26'
+  s.version           = '1.0.1'
+  s.date              = '2009-02-10'
   
   s.summary           = "SalesForce.com Web2Lead Submission"
   s.description       = "The has_force library will provide a simple SalesForce.com submission tool to allow you to capture leads from your ActiveRecord models without utilizing the SalesForce.com API"
