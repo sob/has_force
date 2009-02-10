@@ -65,7 +65,7 @@ module Force
       
       # always return true in the test environment
       # prevents massive spam from SalesForce during tests
-      return true if RAILS_ENV == 'test'
+      return true if (ENV['RAILS_ENV'] == 'test')
       begin
         response = http.request(request)
         case response

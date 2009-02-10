@@ -1,3 +1,6 @@
+== 1.0.2, Released 2009-02-10
+* always run tests before version bumping
+
 == 1.0.1, Released 2009-02-10
 * to_salesforce now returns true automatically if RAILS_ENV == 'test' [sob]
 * added missing documentation to has_force methods [sob]
