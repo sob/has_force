@@ -62,6 +62,10 @@ module Force
       attribs.transform_keys!(self.class.force_transform_fields)
       attribs = attribs.merge(self.class.force_include_fields)
       request.set_form_data(attribs.merge({:oid => self.class.force_oid}))
+      
+      # always return true in the test environment
+      # prevents massive spam from SalesForce during tests
+      return true if RAILS_ENV == 'test'
       begin
         response = http.request(request)
         case response
