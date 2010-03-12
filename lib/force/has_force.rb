@@ -58,7 +58,9 @@ module Force
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = Net::HTTP::Post.new(url.path)
-      attribs = (self.attributes - self.class.force_skip_fields.stringify).stringify_values!
+      attribs = (self.attributes - self.class.force_skip_fields.stringify)
+      convert_booleans_to_integers(attribs)
+      attribs.stringify_values!
       attribs.transform_keys!(self.class.force_transform_fields)
       attribs = attribs.merge(self.class.force_include_fields)
       request.set_form_data(attribs.merge({:oid => self.class.force_oid}))
@@ -74,6 +76,13 @@ module Force
         end
       end
       return false
+    end
+
+    def convert_booleans_to_integers(attribs)
+      attribs.each do |k,v|
+        attribs[k] = 1 if v.class == TrueClass
+        attribs[k] = 0 if v.class == FalseClass
+      end
     end
   end  
 end
