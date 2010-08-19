@@ -52,8 +52,8 @@ module Force
     # Returns true on <tt>Net::HTTPSuccess</tt> or <tt>Net::HTTPRedirection</tt>
     # otherwise returns false
     #
-    def to_salesforce
-      url = URI.parse('https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8')
+    def to_salesforce(sandbox = false)
+      url = URI.parse("https://#{ sandbox == :sandbox ? 'test' : 'www' }.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -67,7 +67,7 @@ module Force
       
       # always return true in the test environment
       # prevents massive spam from SalesForce during tests
-      return true if (ENV['RAILS_ENV'] == 'test')
+      return http if (ENV['RAILS_ENV'] == 'test')
       begin
         response = http.request(request)
         case response
