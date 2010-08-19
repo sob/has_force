@@ -53,7 +53,7 @@ module Force
     # otherwise returns false
     #
     def to_salesforce(sandbox = false)
-      url = URI.parse("https://#{ sandbox == :sandbox ? 'test' : 'www' }.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8")
+      url = URI.parse("https://#{ sandbox ? sandbox : 'www' }.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE

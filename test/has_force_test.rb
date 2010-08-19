@@ -43,7 +43,7 @@ class HasForceTest < Test::Unit::TestCase
 
   def test_uses_the_sandbox_url
     @lead = Lead.new
-    assert_equal 'test.salesforce.com', @lead.to_salesforce(:sandbox).address
+    assert_equal 'cs2.salesforce.com', @lead.to_salesforce('cs2').address
   end
 
   def test_uses_the_regular_url_by_default
